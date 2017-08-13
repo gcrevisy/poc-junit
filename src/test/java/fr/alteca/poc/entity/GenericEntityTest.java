@@ -14,7 +14,7 @@ public class GenericEntityTest {
     @Test
     public void entitiesInstanciationTest() {
 
-        Reflections reflections = new Reflections("fr.alteca.poc.entity");
+        Reflections reflections = new Reflections("fr.alteca.poc");
 
         String errors = "";
 
@@ -34,7 +34,10 @@ public class GenericEntityTest {
             if (instance != null && fields.size() > 0) {
                 for (Field field : fields) {
                     try {
-                        Assert.assertTrue(field.get(instance) != null);
+                        Object value = field.get(instance);
+                        if (value == null) {
+                            Assert.fail(entity.getName() + "#" + field.getName());
+                        }
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }
