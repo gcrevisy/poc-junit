@@ -77,7 +77,7 @@ public class GenericServiceTest {
         for (int i = 0; i < method.getParameterTypes().length; i++) {
             Object[] var = new Object[parameterTypes.length];
             int index = 0;
-            for (Class clazz : parameterTypes) {
+            for (Class<?> clazz : parameterTypes) {
                 if (i == index) {
                     var[index] = null;
                 } else {
