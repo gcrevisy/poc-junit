@@ -3,6 +3,8 @@ package fr.alteca.poc.service;
 import fr.alteca.poc.exception.CustomException;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.reflections.Reflections;
 
 import java.lang.reflect.Method;
@@ -11,7 +13,22 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+@RunWith(Parameterized.class)
 public class GenericServiceTest {
+
+    private final List<TestData> testDatas;
+
+    @Parameterized.Parameters
+    public static List<TestData> getParams() {
+        List<TestData> result = new ArrayList<TestData>();
+
+
+        return result;
+    }
+
+    public GenericServiceTest(List<TestData> items) {
+        this.testDatas = items;
+    }
 
     @Test
     public void nullParametersTest() throws IllegalAccessException, InstantiationException {
@@ -36,6 +53,7 @@ public class GenericServiceTest {
                     List<Object[]> argsList = getParamterTabs(method.getParameterTypes());
                     for (Object[] args : argsList)
                         method.invoke(newInstance, args);
+                    method.getDeclaringClass();
                 } catch (Exception e) {
                     if (!(e instanceof CustomException || (e.getCause() != null && e.getCause() instanceof CustomException))) {
                         errors += " \r\n " + service.getName() + "#" + method.getName() + "#" + e.getMessage();
@@ -71,3 +89,5 @@ public class GenericServiceTest {
         return result;
     }
 }
+
+
