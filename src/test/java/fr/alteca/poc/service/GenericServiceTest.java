@@ -21,6 +21,10 @@ public class GenericServiceTest {
 
     @Parameterized.Parameters
     public static List<TestData> getParams() {
+        String fileFormat = System.getProperty("fileFormat");
+
+
+
         List<TestData> result = new ArrayList<TestData>();
 
         Reflections reflections = new Reflections("fr.alteca.poc");
