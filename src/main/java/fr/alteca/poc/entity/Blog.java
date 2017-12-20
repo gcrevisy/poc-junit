@@ -10,7 +10,9 @@ public class Blog extends AbstractEntity {
     protected String content;
     protected List<String> hashTags;
 
-    public Blog(){
+    public Blog() {
+        title = "";
+        content = "";
         hashTags = new ArrayList<String>();
     }
 
