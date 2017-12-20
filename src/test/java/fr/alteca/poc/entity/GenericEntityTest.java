@@ -25,7 +25,7 @@ public class GenericEntityTest {
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
-
+/*
             List<Field> fields = Arrays.asList(entity.getDeclaredFields());
             if (instance != null && fields.size() > 0) {
                 for (Field field : fields) {
@@ -38,7 +38,7 @@ public class GenericEntityTest {
                         e.printStackTrace();
                     }
                 }
-            }
+            }*/
         }
 
     }
