@@ -82,7 +82,7 @@ public class GenericServiceTest {
 
         boolean testInstance = this.testData.getReturnType().getClass().isInstance(fr.alteca.poc.pojo.RetourService.class);
 
-        Assert.assertTrue("", testInstance);
+        Assert.assertTrue(testData.getMethodToInvoke().toString(), testInstance);
     }
 
     private static List<TestData> getParamterTabs(Method method) {
