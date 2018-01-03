@@ -6,8 +6,10 @@
         <option value="activate" />
         <option value="organizeImports" />
         <option value="reformat" />
+        <option value="unqualifiedFieldAccess" />
         <option value="missingOverrideAnnotation" />
       </set>
     </option>
+    <option name="configurationPath" value="" />
   </component>
 </project>

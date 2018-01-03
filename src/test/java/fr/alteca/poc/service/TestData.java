@@ -6,26 +6,37 @@ public class TestData {
 
     private Method methodToInvoke;
 
-    private Object[] params;
+    private Object[] parametersTypes;
 
-    public TestData(Method methodToInvoke, Object[] params) {
+    private Object returnType;
+
+    public TestData(Method methodToInvoke, Object[] parametersTypes, Object returnType) {
         this.methodToInvoke = methodToInvoke;
-        this.params = params;
+        this.parametersTypes = parametersTypes;
+        this.returnType = returnType;
     }
 
     public Method getMethodToInvoke() {
-        return methodToInvoke;
+        return this.methodToInvoke;
     }
 
     public void setMethodToInvoke(Method methodToInvoke) {
         this.methodToInvoke = methodToInvoke;
     }
 
-    public Object[] getParams() {
-        return params;
+    public Object[] getParametersTypes() {
+        return this.parametersTypes;
     }
 
-    public void setParams(Object[] params) {
-        this.params = params;
+    public void setParametersTypes(Object[] parametersTypes) {
+        this.parametersTypes = parametersTypes;
+    }
+
+    public Object getReturnType() {
+        return this.returnType;
+    }
+
+    public void setReturnType(Object returns) {
+        this.returnType = returns;
     }
 }

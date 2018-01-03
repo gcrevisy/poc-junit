@@ -1,16 +1,17 @@
 package fr.alteca.poc.service;
 
 import fr.alteca.poc.exception.CustomException;
+import fr.alteca.poc.pojo.RetourService;
 
 import java.util.List;
 
 public interface Service<T> {
 
-    List<T> getAll();
+    RetourService<List<T>> getAll();
 
-    List<T> getByCriteria(String title, String content, String hashTag) throws CustomException;
+    RetourService<List<T>> getByCriteria(String title, String content, String hashTag) throws CustomException;
 
-    T getById(Integer id) throws CustomException;
+    RetourService<T> getById(Integer id) throws CustomException;
 
     void delete(T item) throws CustomException;
 

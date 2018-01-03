@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+
 @RunWith(Parameterized.class)
 public class GenericServiceTest {
 
@@ -22,7 +23,6 @@ public class GenericServiceTest {
     @Parameterized.Parameters
     public static List<TestData> getParams() {
         String fileFormat = System.getProperty("fileFormat");
-
 
 
         List<TestData> result = new ArrayList<TestData>();
@@ -37,8 +37,9 @@ public class GenericServiceTest {
 
             List<Method> methods = Arrays.asList(service.getDeclaredMethods());
             for (Method method : methods) {
-                if (method.getParameterCount() == 0)
+                if (method.getParameterCount() == 0) {
                     continue;
+                }
                 result.addAll(getParamterTabs(method));
             }
         }
@@ -52,7 +53,7 @@ public class GenericServiceTest {
     @Test(expected = CustomException.class)
     public void nullParametersTest() throws Throwable {
 
-        Class<? extends Service> clazz = (Class<? extends Service>) testData.getMethodToInvoke().getDeclaringClass();
+        Class<? extends Service> clazz = (Class<? extends Service>) this.testData.getMethodToInvoke().getDeclaringClass();
         Service instance = null;
         try {
             instance = clazz.newInstance();
@@ -63,21 +64,31 @@ public class GenericServiceTest {
         }
 
         try {
-            testData.getMethodToInvoke().invoke(instance, testData.getParams());
+            this.testData.getMethodToInvoke().invoke(instance, this.testData.getParametersTypes());
         } catch (IllegalAccessException e) {
-            Assert.fail("Erreur lors de l'appel de " + testData.getMethodToInvoke().getName() + " : " + e.getMessage());
+            Assert.fail("Erreur lors de l'appel de " + this.testData.getMethodToInvoke().getName() + " : " + e.getMessage());
         } catch (InvocationTargetException e) {
             if (e.getTargetException() instanceof CustomException) {
                 throw e.getTargetException();
             } else {
-                Assert.fail("Erreur lors de l'appel de " + testData.getMethodToInvoke().getName() + " : " + e.getMessage());
+                Assert.fail("Erreur lors de l'appel de " + this.testData.getMethodToInvoke().getName() + " : " + e.getMessage());
             }
         }
+    }
+
+    @Test
+    public void returnTypesTest() {
+
+
+        boolean testInstance = this.testData.getReturnType().getClass().isInstance(fr.alteca.poc.pojo.RetourService.class);
+
+        Assert.assertTrue("", testInstance);
     }
 
     private static List<TestData> getParamterTabs(Method method) {
         List<TestData> result = new ArrayList<TestData>();
         Class<?>[] parameterTypes = method.getParameterTypes();
+        Class<?> returnType = method.getReturnType();
         for (int i = 0; i < method.getParameterTypes().length; i++) {
             Object[] var = new Object[parameterTypes.length];
             int index = 0;
@@ -97,7 +108,7 @@ public class GenericServiceTest {
                 }
                 index++;
             }
-            result.add(new TestData(method, var));
+            result.add(new TestData(method, var, returnType));
         }
 
         return result;
