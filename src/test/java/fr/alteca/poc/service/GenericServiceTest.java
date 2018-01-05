@@ -1,6 +1,7 @@
 package fr.alteca.poc.service;
 
 import fr.alteca.poc.exception.CustomException;
+import fr.alteca.poc.pojo.RetourService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -78,11 +79,8 @@ public class GenericServiceTest {
 
     @Test
     public void returnTypesTest() {
-
-
-        boolean testInstance = this.testData.getReturnType().getClass().isInstance(fr.alteca.poc.pojo.RetourService.class);
-
-        Assert.assertTrue(testData.getMethodToInvoke().toString(), testInstance);
+        boolean testInstance = this.testData.getReturnType().getClass().isInstance(RetourService.class);
+        Assert.assertTrue(this.testData.getMethodToInvoke().toString(), testInstance);
     }
 
     private static List<TestData> getParamterTabs(Method method) {
