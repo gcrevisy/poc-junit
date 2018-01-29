@@ -25,8 +25,20 @@ public class GenericServiceTest {
     public static List<TestData> getParams() {
         String fileFormat = System.getProperty("fileFormat");
 
-
+        
         List<TestData> result = new ArrayList<TestData>();
+
+      // List<ClassLoader> classLoadersList = new LinkedList<ClassLoader>();
+      //classLoadersList.add(ClasspathHelper.contextClassLoader());
+      //classLoadersList.add(ClasspathHelper.staticClassLoader());
+      //classLoadersList.add(ClassLoader.getSystemClassLoader());
+      
+      //Reflections reflections = new Reflections(new ConfigurationBuilder()
+      //.setScanners(new SubTypesScanner(false /* don't exclude Object.class */), new ResourcesScanner())
+      //.setUrls(ClasspathHelper.forClassLoader(classLoadersList.toArray(new ClassLoader[0])))
+      //.filterInputsBy(new FilterBuilder().include(FilterBuilder.prefix("fr.ibp.parme"))));
+          
+        //List<TestData> result = new ArrayList<TestData>();
 
         Reflections reflections = new Reflections("fr.alteca.poc");
         Set<Class<? extends Service>> classes = reflections.getSubTypesOf(Service.class);
