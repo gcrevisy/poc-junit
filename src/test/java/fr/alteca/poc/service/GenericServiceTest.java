@@ -36,7 +36,7 @@ public class GenericServiceTest {
       //Reflections reflections = new Reflections(new ConfigurationBuilder()
       //.setScanners(new SubTypesScanner(false /* don't exclude Object.class */), new ResourcesScanner())
       //.setUrls(ClasspathHelper.forClassLoader(classLoadersList.toArray(new ClassLoader[0])))
-      //.filterInputsBy(new FilterBuilder().include(FilterBuilder.prefix("fr.ibp.parme"))));
+      //.filterInputsBy(new FilterBuilder().include(FilterBuilder.prefix("fr.alteca.poc"))));
           
         //List<TestData> result = new ArrayList<TestData>();
 
